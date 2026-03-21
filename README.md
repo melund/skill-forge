@@ -1,9 +1,11 @@
 # skill-forge
 
-[![conda-forge](https://img.shields.io/badge/prefix.dev%2Fskill--forge-F7CC49?style=flat-square)](https://prefix.dev/channels/skill-forge)
+[![conda-forge](https://img.shields.io/badge/prefix.dev%2Fskill--forge-F7CC49?style=flat-square)](https://prefix.dev/channels/melund-skill-forge)
 [![pixi-skills](https://img.shields.io/badge/pavelzw%2Fpixi--skills-181717?style=flat-square&logo=github)](https://github.com/pavelzw/pixi-skills)
 
-A collection of agent skills packaged as conda packages and published to the [skill-forge](https://prefix.dev/channels/skill-forge) channel on prefix.dev.
+> [!NOTE] This is fork of [skill-forge](https://github.com/pavelzw/skill-forge) for building my own hosted/trusted skills. 
+
+A collection of agent skills packaged as conda packages and published to the [melund-skill-forge](https://prefix.dev/channels/melund-skill-forge) channel on prefix.dev.
 
 Agent skills are markdown files that give AI coding agents specialized knowledge about libraries, tools, and domains.
 They are managed by [pixi-skills](https://github.com/pavelzw/pixi-skills) and can be installed into any pixi project.
@@ -42,7 +44,7 @@ Add the `skill-forge` channel and the desired skill packages to your `pixi.toml`
 
 ```toml
 [workspace]
-channels = ["conda-forge", "https://prefix.dev/skill-forge"]
+channels = ["conda-forge", "https://prefix.dev/melund-skill-forge"]
 platforms = ["linux-64", "osx-arm64", "win-64"]
 
 [dependencies]
