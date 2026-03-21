@@ -31,7 +31,8 @@ jobs:
 
       - name: Set up Pixi
         uses: prefix-dev/setup-pixi@a0af7a228712d6121d37aba47adf55c1332c9c2e # v0.9.4
-
+      - name: Authenticate with prefix.dev
+        run: pixi auth login prefix.dev --token "${{ secrets.PREFIX_API_KEY }}"
       - name: Bump version
         run: pixi run .github/scripts/update.sh ${{ matrix.skill }} ${{ matrix.strategy }}
         id: bump
