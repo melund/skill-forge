@@ -1,0 +1,36 @@
+context:
+  skill: joss-review
+
+package:
+  name: agent-skill-${{ skill }}
+  version: "0.0.1"
+
+build:
+  number: 0
+  noarch: generic
+  script:
+    - mkdir -p $PREFIX/etc/agent-skills/${{ skill }}
+    - cp $RECIPE_DIR/SKILL.md $PREFIX/etc/agent-skills/${{ skill }}/SKILL.md
+
+tests:
+  - package_contents:
+      files:
+        - etc/agent-skills/${{ skill }}/SKILL.md
+      strict: true
+  - script:
+      - agentskills validate $CONDA_PREFIX/etc/agent-skills/${{ skill }}
+    requirements:
+      run:
+        - skills-ref
+
+about:
+  summary: Agent skill for reviewing JOSS (Journal of Open Source Software) submissions
+  description: |
+    Guidelines for reviewing Journal of Open Source Software (JOSS) papers.
+    - Complete review checklist covering license, scope, documentation, tests, and paper content
+    - Grading criteria for development history, documentation quality, and paper sections
+    - Required paper sections: statement of need, state of the field, software design, research impact, AI disclosure
+  homepage: https://joss.readthedocs.io/en/latest/review_criteria.html
+  repository: https://github.com/melund/skill-forge
+  documentation: https://joss.readthedocs.io/en/latest/review_checklist.html
+  license: BSD-3-Clause

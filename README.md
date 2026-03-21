@@ -17,6 +17,7 @@ For more background on why distributing agent skills through package managers ma
 | Skill | Package | Description |
 |-------|---------|-------------|
 | [conda-forge](https://conda-forge.org) | `agent-skill-conda-forge` | conda-forge packaging operations |
+| [JOSS Review](https://joss.readthedocs.io) | `agent-skill-joss-review` | Reviewing Journal of Open Source Software submissions |
 | [Matplotlib Data Visualization](https://matplotlib.org) | `agent-skill-matplotlib-data-visualization` | Chart design and data storytelling guidelines |
 | Presentation Design | `agent-skill-presentation-design` | Slide design and storytelling guidelines |
 | Literature Review | `agent-skill-literature-review` | Systematic literature reviews with citation verification |
