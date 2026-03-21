@@ -15,6 +15,10 @@ jobs:
       matrix:
         include:
           # git-main strategy (track main branch)
+          - skill: literature-review
+            strategy: git-main
+          - skill: peer-review
+            strategy: git-main
           - skill: polars
             strategy: git-main
           # generate strategy (re-run generate.py with latest rev)
