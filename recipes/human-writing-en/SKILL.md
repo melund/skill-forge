@@ -1,4 +1,3 @@
-```skill
 ---
 name: human-writing-en
 description: >-
@@ -230,4 +229,3 @@ Before delivering text, scan for these tells:
 8. Did I use semicolons? Replace with periods.
 9. Are there more than two items in a parallel list? Check if the third is filler.
 10. Did I bold multiple phrases for emphasis? Remove the bold.
-```
