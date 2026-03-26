@@ -21,6 +21,8 @@ jobs:
             strategy: git-main
           - skill: polars
             strategy: git-main
+          - skill: pptx
+            strategy: git-main
           # generate strategy (re-run generate.py with latest rev)
           - skill: gws-cli
             strategy: generate

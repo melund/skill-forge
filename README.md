@@ -23,6 +23,7 @@ For more background on why distributing agent skills through package managers ma
 | Literature Review | `agent-skill-literature-review` | Systematic literature reviews with citation verification |
 | Peer Review | `agent-skill-peer-review` | Scientific peer review following academic standards |
 | [Polars](https://pola.rs) | `agent-skill-polars` | DataFrame library for fast data manipulation |
+| [PPTX](https://skills.sh/anthropics/skills/pptx) | `agent-skill-pptx` | Create, edit, and manipulate PowerPoint presentations |
 | [rattler-build](https://rattler.build) | `agent-skill-rattler-build` | Build conda packages with rattler-build |
 | [SQLAlchemy](https://www.sqlalchemy.org) | `agent-skill-sqlalchemy` | Python SQL toolkit and ORM |
 | [Google Workspace CLI](https://github.com/googleworkspace/cli) | [92 packages](recipes/gws-cli/SKILLS.md) | Google Workspace services (Gmail, Calendar, Drive, etc.) |
