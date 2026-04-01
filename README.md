@@ -1,60 +1,103 @@
-# skill-forge
+# Skills and plugins
 
-[![conda-forge](https://img.shields.io/badge/prefix.dev%2Fskill--forge-F7CC49?style=flat-square)](https://prefix.dev/channels/melund-skill-forge)
-[![pixi-skills](https://img.shields.io/badge/pavelzw%2Fpixi--skills-181717?style=flat-square&logo=github)](https://github.com/pavelzw/pixi-skills)
+A personal agent plugin marketplace for VS Code and GitHub Copilot CLI. Skills are distributed as [agent plugins](https://code.visualstudio.com/docs/copilot/customization/agent-plugins) that can be discovered, installed, and updated directly from VS Code or the Copilot CLI.
 
-+> [!NOTE] This is fork of [skill-forge](https://github.com/pavelzw/skill-forge) for building my own hosted/trusted skills.
+## Available plugins
 
-A collection of agent skills packaged as conda packages and published to the [melund-skill-forge](https://prefix.dev/channels/melund-skill-forge) channel on prefix.dev.
+### Local plugins
 
-Agent skills are markdown files that give AI coding agents specialized knowledge about libraries, tools, and domains.
-They are managed by [pixi-skills](https://github.com/pavelzw/pixi-skills) and can be installed into any pixi project.
+| Plugin | Skills | Description |
+|--------|--------|-------------|
+| `conda-packaging` | conda-forge, rattler-build | Conda packaging operations — fix failing builds, create new packages, migrate recipes, build conda packages |
+| `data-visualization` | matplotlib-data-visualization, pydantic-evals | Chart design and data storytelling with matplotlib; evaluation of non-deterministic functions with pydantic-evals |
+| `typst` | typst | Modern markup-based typesetting system for scientific documents, presentations, and math |
+| `sqlalchemy` | sqlalchemy | Python SQL toolkit and ORM — engine management, declarative mapping, sessions, queries |
+| `human-writing-en` | human-writing-en | English writing style that reads as human-authored, not AI-generated |
+| `joss-review` | joss-review | Guide for reviewing Journal of Open Source Software (JOSS) submissions |
+| `presentation-design` | presentation-design | Slide design and storytelling guidelines for all presentation tools |
 
-For more background on why distributing agent skills through package managers makes sense, check out the blog post [Managing Agent Skills with Your Package Manager](https://pavel.pink/blog/pixi-skills).
+### External plugins
 
-## Available skills
+These reference upstream repositories directly:
 
-| Skill | Package | Description |
-|-------|---------|-------------|
-| [conda-forge](https://conda-forge.org) | `agent-skill-conda-forge` | conda-forge packaging operations |
-| [JOSS Review](https://joss.readthedocs.io) | `agent-skill-joss-review` | Reviewing Journal of Open Source Software submissions |
-| [Matplotlib Data Visualization](https://matplotlib.org) | `agent-skill-matplotlib-data-visualization` | Chart design and data storytelling guidelines |
-| Presentation Design | `agent-skill-presentation-design` | Slide design and storytelling guidelines |
-| Literature Review | `agent-skill-literature-review` | Systematic literature reviews with citation verification |
-| Peer Review | `agent-skill-peer-review` | Scientific peer review following academic standards |
-| [Polars](https://pola.rs) | `agent-skill-polars` | DataFrame library for fast data manipulation |
-| [PPTX](https://skills.sh/anthropics/skills/pptx) | `agent-skill-pptx` | Create, edit, and manipulate PowerPoint presentations |
-| [rattler-build](https://rattler.build) | `agent-skill-rattler-build` | Build conda packages with rattler-build |
-| [SQLAlchemy](https://www.sqlalchemy.org) | `agent-skill-sqlalchemy` | Python SQL toolkit and ORM |
-| [Google Workspace CLI](https://github.com/googleworkspace/cli) | [92 packages](recipes/gws-cli/SKILLS.md) | Google Workspace services (Gmail, Calendar, Drive, etc.) |
-| Human Writing (English) | `agent-skill-human-writing-en` | Human-sounding English writing style for AI agents |
-| [Typst](https://typst.app) | `agent-skill-typst` | Modern markup-based typesetting system |
+| Plugin | Source | Description |
+|--------|--------|-------------|
+| `anthropic-skills` | [anthropics/skills](https://github.com/anthropics/skills) | Document processing skills (PowerPoint, Word, Excel, PDF) |
+| `scientific-skills` | [k-dense-ai/claude-scientific-skills](https://github.com/k-dense-ai/claude-scientific-skills) | Literature review, peer review, Polars DataFrame library |
 
-## Usage
+## Installation
 
-### Managing skills with pixi-skills
+### VS Code
 
-The recommended way to use agent skills is through [pixi-skills](https://github.com/pavelzw/pixi-skills).
-Install it with:
+1. Enable agent plugins (preview feature):
+
+   ```jsonc
+   // settings.json
+   "chat.plugins.enabled": true
+   ```
+
+2. Add this marketplace to your VS Code settings:
+
+   ```jsonc
+   // settings.json
+   "chat.plugins.marketplaces": [
+       "melund/skill-forge"
+   ]
+   ```
+
+3. Open the Extensions view (`Ctrl+Shift+X`), type `@agentPlugins` in the search bar, and browse the available plugins. Select **Install** on any plugin you want to use.
+
+### Copilot CLI
 
 ```bash
-pixi exec pixi-skills manage
+# Register the marketplace
+copilot plugin marketplace add melund/skill-forge
+
+# Browse available plugins
+copilot plugin marketplace browse melund-skill-forge
+
+# Install a plugin
+copilot plugin install conda-packaging@melund-skill-forge
 ```
 
-This will interactively guide you through adding skills to your project.
+## Repository structure
 
-### Manual setup
-
-Add the `skill-forge` channel and the desired skill packages to your `pixi.toml`:
-
-```toml
-[workspace]
-channels = ["conda-forge", "https://prefix.dev/melund-skill-forge"]
-platforms = ["linux-64", "osx-arm64", "win-64"]
-
-[dependencies]
-polars = ">=1,<2"
-
-[feature.dev.dependencies]
-agent-skill-polars = "*"
 ```
+.github/
+  plugin/
+    marketplace.json          # Marketplace manifest
+plugins/
+  conda-packaging/
+    plugin.json               # Plugin manifest
+    skills/
+      conda-forge/            # SKILL.md + references/
+      rattler-build/          # SKILL.md + references/
+  data-visualization/
+    plugin.json
+    skills/
+      matplotlib-data-visualization/
+      pydantic-evals/
+  typst/
+    plugin.json
+    skills/typst/             # SKILL.md + PROMPT.md + references/
+  sqlalchemy/
+    plugin.json
+    skills/sqlalchemy/        # SKILL.md + PROMPT.md
+  human-writing-en/
+    plugin.json
+    skills/human-writing-en/
+  joss-review/
+    plugin.json
+    skills/joss-review/
+  presentation-design/
+    plugin.json
+    skills/presentation-design/
+```
+
+## Adding a new plugin
+
+1. Create a directory under `plugins/<plugin-name>/` with a `plugin.json` manifest and a `skills/` subdirectory.
+2. Place `SKILL.md` files (with YAML frontmatter containing `name` and `description`) in `skills/<skill-name>/`.
+3. Add the plugin entry to `.github/plugin/marketplace.json`.
+
+See the [plugin reference](https://docs.github.com/en/copilot/reference/cli-plugin-reference) for the full `plugin.json` and `marketplace.json` schemas.
