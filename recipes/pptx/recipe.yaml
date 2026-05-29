@@ -1,21 +1,17 @@
 context:
   skill: pptx
-
 package:
   name: agent-skill-${{ skill }}
-  version: "0.0.1"
-
+  version: "0.0.2"
 source:
   git: https://github.com/anthropics/skills
-  rev: 98669c11ca63e9c81c11501e1437e5c47b556621
-
+  rev: da20c92503b2e8ff1cf28ca81a0df4673debdbf7
 build:
   number: 0
   noarch: generic
   script:
     - mkdir -p $PREFIX/share/agent-skills/${{ skill }}
     - cp -R skills/${{ skill }}/* $PREFIX/share/agent-skills/${{ skill }}
-
 tests:
   - package_contents:
       files:
@@ -28,7 +24,6 @@ tests:
     requirements:
       run:
         - skills-ref
-
 about:
   summary: Agent skill for creating and editing PowerPoint presentations
   description: |
