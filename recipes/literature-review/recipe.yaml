@@ -2,10 +2,10 @@ context:
   skill: literature-review
 package:
   name: agent-skill-${{ skill }}
-  version: "0.0.2"
+  version: "0.0.3"
 source:
   git: https://github.com/k-dense-ai/claude-scientific-skills
-  rev: 575f1e586f6b484feb3cba040b6e29f2a56f3c74
+  rev: 93124850ef08487e423165554c54f0b333d5631d
 build:
   number: 0
   noarch: generic
